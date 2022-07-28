@@ -2,8 +2,8 @@ import UpdateTransaction from '../Components/UpdateTransaction';
 
 const Edit = () => {
   return (
-    <div >
-      <h2>Edit</h2>
+    <div  style={{ textAlign: 'center', backgroundColor: '#96DED1', height: '100vh' }}>
+      <h2 >Edit</h2>
       <UpdateTransaction />
     </div>
   );

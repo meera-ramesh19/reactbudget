@@ -9,9 +9,10 @@
   margin: 4rem 0;
   position: absolute;
   top: 50%;
-  width:600px;
+  width: 600px;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+  border: none;
 }
 
 .links {

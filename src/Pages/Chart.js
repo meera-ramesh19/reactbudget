@@ -2,7 +2,7 @@ import Charts from '../Components/Charts';
 
 const Chart= () => {
   return (
-    <div >
+    <div  style={{ textAlign: 'center', backgroundColor: '#96DED1', height: '100vh' }}>
       <h2>Edit</h2>
      <Charts/>
     </div>
