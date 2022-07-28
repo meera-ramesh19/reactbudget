@@ -1,10 +1,10 @@
-import Transactions from '../Components/Transactions';
+import AllTransactions from '../Components/AllTransactions';
 
 const Index = () => {
   return (
     <div className='Index'>
-      <h2>Index</h2>
-      <Transactions />
+      
+      <AllTransactions />
     </div>
   );
 };

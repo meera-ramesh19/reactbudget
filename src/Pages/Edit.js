@@ -1,10 +1,10 @@
-import Update from '../Components/Update';
+import UpdateTransaction from '../Components/UpdateTransaction';
 
 const Edit = () => {
   return (
     <div className='New Edit'>
       <h2>Edit</h2>
-      <Update />
+      <UpdateTransaction />
     </div>
   );
 };

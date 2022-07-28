@@ -6,19 +6,25 @@ const NavBar = () => {
     <nav className='nav'>
       <div>
         <img
-          style={{ width: '50px', height: '50px' }}
+          style={{ width: '50px', height: '50px' ,background:'transparent'}}
           src={logo}
           alt='Dollar sign'
         />
       </div>
       <button>
-        <Link to='/'>Home</Link>
+        <Link style={{ color: 'yellow' }} to='/'>
+          Home
+        </Link>
       </button>
       <button>
-        <Link to='/transactions'>Transactions</Link>
+        <Link style={{ color: 'yellow' }} to='/transactions'>
+          Transactions
+        </Link>
       </button>
       <button>
-        <Link to='/transactions/new'>New Transactions</Link>
+        <Link style={{ color: 'yellow' }} to='/transactions/new'>
+          New Transactions
+        </Link>
       </button>
     </nav>
   );

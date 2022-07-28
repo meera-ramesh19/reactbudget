@@ -1,0 +1,26 @@
+.transaction-list,
+.list-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.list-header span {
+  text-align: center;
+  padding: 1rem 1rem 1rem 3rem;
+  font-size: 1.2rem;
+  color: yellow;
+  background: black;
+  margin: 0 1rem;
+}
+ul {
+  text-align: center;
+}
+.display-list {
+  font-size: 1.2rem;
+}
+span:nth-of-type(2n) {
+  text-align: center;
+}

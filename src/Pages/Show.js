@@ -1,10 +1,10 @@
-import TransactionDetails from '../Components/TransactionDetails';
+import ShowTransactions from '../Components/ShowTransactions';
 
 const Show = () => {
   return (
-    <div >
-      <h2>Show</h2>
-      <TransactionDetails />
+    <div 
+      style={{textAlign:'center'}}>
+      <ShowTransactions />
     </div>
   );
 };

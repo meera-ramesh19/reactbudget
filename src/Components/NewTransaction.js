@@ -1,34 +1,36 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import axios from 'axios';
-import { nanoid } from 'nanoid';
-import { useNavigate } from 'react-router-dom';
+// import { nanoid } from 'nanoid';
+import { useNavigate, useParams, Link } from 'react-router-dom';
+import confetti from 'https://cdn.skypack.dev/canvas-confetti@1';
+
 const API = process.env.REACT_APP_API_URL;
 
 const NewTransaction = () => {
   const [transaction, setTransaction] = useState({
-    transId: '',
     itemName: '',
-    amount: 0,
+    amount: '',
     date: '',
     from: '',
     category: '',
     type: '',
   });
 
-  const [itemName, setItemName] = useState('');
-  const [amount, setAmount] = useState('');
-  const [from, setFrom] = useState('');
-  const [date, setDate] = useState('');
-  const [category, setCategory] = useState('');
+  // const [itemName, setItemName] = useState('');
+  // const [amount, setAmount] = useState('');
+  // const [from, setFrom] = useState('');
+  // const [date, setDate] = useState('');
+  // const [category, setCategory] = useState('');
   const [type, setType] = useState('Expense');
 
   const navigate = useNavigate();
+  let { index } = useParams();
 
   const onChangeValue = (event) => {
     setType(event.target.value);
   };
 
-  const onInputChange = (event) => {
+  const handleTextChange = (event) => {
     console.log(event.target.value);
     setTransaction({
       ...transaction,
@@ -39,97 +41,105 @@ const NewTransaction = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     //use v4,ulid or nanoid instead of uuidv4 which is deprecated
-    let id = nanoid(); //to generate uniqeue ids
-    const newTransaction = {
-      transId: id,
-      itemName: itemName,
-      amount: Number(amount),
-      date: date,
-      from: from,
-      category: category,
-      type: type,
-    };
+    // let id = nanoid(); //to generate uniqeue ids
+
     axios
-      .post(`${API}/transactions`, newTransaction)
+      .post(`${API}/transactions`, transaction)
       .then(() => {
         navigate(`/transactions`);
       })
       .catch((c) => console.error('catch', c));
   };
 
+  const onClick = useCallback(() => {
+    confetti({
+      particleCount: 150,
+      spread: 60,
+    });
+  }, []);
   return (
     <div className='New'>
       <form onSubmit={handleSubmit}>
-        <label htmlFor='itemName'>itemName:</label>
+        <label htmlFor='itemName'>Item Name: </label>
         <input
           id='itemName'
-          name='itemName'
+          type='text'
           value={transaction.itemName}
-          type='text'
-          onChange={onInputChange}
-          placeholder='Item Name'
+          onChange={handleTextChange}
           required
+          placeholder='paycheck.'
         />
-        <label htmlFor='from'>From:</label>
-        <input
-          id='from'
-          name='from'
-          type='text'
-          required
-          value={transaction.from}
-          placeholder='from'
-          onChange={onInputChange}
-        />
-        <label htmlFor='amount'>Amount:</label>
+        <br />
+        <label htmlFor='amount'>Amount: </label>
         <input
           id='amount'
           type='number'
-          name='amount'
+          required
           value={transaction.amount}
-          placeholder='amount'
-          onChange={onInputChange}
+          onChange={handleTextChange}
+          placeholder='Dollar Amount'
         />
-        <label htmlFor='date'>Date:</label>
+        <br />
+        <label htmlFor='date'>Date: </label>
         <input
           id='date'
           type='date'
           name='date'
           value={transaction.date}
-          onChange={onInputChange}
+          onChange={handleTextChange}
+          required
+          placeholder='date'
         />
-        <label htmlFor='category'>Category:</label>
+        <br />
+        <label htmlFor='from'>From: </label>
+        <input
+          id='from'
+          type='text'
+          onChange={handleTextChange}
+          value={transaction.from}
+          required
+          placeholder='work....'
+        />
+        <br />
+        <label htmlFor='category'>Category: </label>
         <input
           id='category'
-          type='category'
+          type='text'
           name='category'
           value={transaction.category}
-          onChange={onInputChange}
+          placeholder='food etc...'
+          onChange={handleTextChange}
+          required
         />
 
-        <div>
+        <div >
           <input
             type='radio'
             name='type'
             value='income'
-            id='expenses'
+            id='income'
             checked={type === 'income'}
             onChange={onChangeValue}
           />
-          Income
+         <label style={{padding:'0 0.5rem'}} >Income</label>
+         <span ></span>
           <input
             type='radio'
-            value='expenses'
-            id='expenses'
+            value='expense'
+            id='expense'
             name='type'
-            checked={type === 'expenses'}
+            checked={type === 'expense'}
             onChange={onChangeValue}
           />
           Expense
         </div>
 
         <br />
-        <input type='submit' />
+        <input type='submit' onClick={onClick} />
       </form>
+      <Link style={{margin:'0 auto',textAlign:'center'}}to={`/transactions/${index}`}>
+        <button>Nevermind! </button>
+      </Link>
     </div>
   );
 };
