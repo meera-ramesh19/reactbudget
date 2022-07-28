@@ -63,54 +63,63 @@ const UpdateTransaction = () => {
   };
 
   return (
-    <div className='Edit'>
+    <div className='edit-trans'>
       <form onSubmit={handleSubmit}>
-        <label htmlFor='itemName'>itemName:</label>
-        <input
-          id='itemName'
-          name='itemName'
-          value={transaction.itemName}
-          type='text'
-          onChange={onInputChange}
-          placeholder='Item Name'
-          required
-        />
-
-        <label htmlFor='amount'>Amount:</label>
-        <input
-          id='amount'
-          type='number'
-          name='amount'
-          value={transaction.amount}
-          placeholder='amount'
-          onChange={onInputChange}
-        />
-        <label htmlFor='date'>Date:</label>
-        <input
-          id='date'
-          type='date'
-          name='date'
-          value={transaction.date}
-          onChange={onInputChange}
-        />
-        <label htmlFor='from'>From:</label>
-        <input
-          id='from'
-          name='from'
-          type='text'
-          required
-          value={transaction.from}
-          placeholder='from'
-          onChange={onInputChange}
-        />
-        <label htmlFor='category'>Category:</label>
-        <input
-          id='category'
-          type='category'
-          name='category'
-          value={transaction.category}
-          onChange={onInputChange}
-        />
+        <div>
+          <label htmlFor='itemName'>itemName:</label>
+          <input
+            id='itemName'
+            name='itemName'
+            value={transaction.itemName}
+            type='text'
+            onChange={onInputChange}
+            placeholder='Item Name'
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor='amount'>Amount:</label>
+          <input
+            id='amount'
+            type='number'
+            name='amount'
+            value={transaction.amount}
+            placeholder='amount'
+            onChange={onInputChange}
+          />
+        </div>
+        <div>
+          <label htmlFor='date'>Date:</label>
+          <input
+            id='date'
+            type='date'
+            name='date'
+            value={transaction.date}
+            onChange={onInputChange}
+          />
+        </div>
+        <div>
+          <label htmlFor='from'>From:</label>
+          <input
+            id='from'
+            name='from'
+            type='text'
+            required
+            value={transaction.from}
+            placeholder='from'
+            onChange={onInputChange}
+          />
+        </div>
+        <div>
+          <label htmlFor='category'>Category:</label>
+          <input
+            id='category'
+            type='category'
+            name='category'
+            value={transaction.category}
+            onChange={onInputChange}
+          />
+        </div>
 
         <div>
           <input
@@ -133,13 +142,14 @@ const UpdateTransaction = () => {
           Expense
         </div>
 
-        <br />
-        <input type='submit' />
-      </form>
+        <div className='edit-btn'>
+          <input type='submit' />
 
-      <Link to={`/transactions/${index}`}>
-        <button>Back</button>
-      </Link>
+          <Link to={`/transactions/${index}`}>
+            <button>Back</button>
+          </Link>
+        </div>
+      </form>
     </div>
   );
 };

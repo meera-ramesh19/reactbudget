@@ -1,13 +1,21 @@
-.center-card {
+.center-card > div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 2rem;
+  position: relative;
+}
+.card {
+  margin: 4rem 0;
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width:600px;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
-.showNavigation{
-  display:flex;
+.links {
+  display: flex;
   justify-content: center;
   align-items: center;
-  margin:0 2rem;
 }

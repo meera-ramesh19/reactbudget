@@ -30,16 +30,17 @@ const TransactionDetails = () => {
 
   return (
     <article>
-      <div className="center-card">
+      <div  className="center-card">
+        <div className="card">
         {/* <h6>Item Name:{transaction.itemName}</h6>
         <h6>Date:{transaction.date}</h6>
         <h6> From:{transaction.from}</h6>
         <h6> Amount: {transaction.amount}</h6>
         <h6>Category :{transaction.category}</h6>
         <h6>Type :{transaction.type}</h6> */}
-        <Card style={{ width:'18rem' }}>
+        <Card  >
       <Card.Body>
-        <Card.Title>Transaction Summary</Card.Title>
+        <Card.Title className=''></Card.Title>
         <Card.Subtitle className="mb-2 text-muted">Item Name:{transaction.itemName}</Card.Subtitle>
         <Card.Text>
         Date:{transaction.date}
@@ -59,26 +60,27 @@ const TransactionDetails = () => {
       </Card.Body>
     </Card>
       </div>
-      <div className='showNavigation'>
-        <div >
+   
+      </div> 
+      <div className='show-nav'>
           {' '}
-          <Link to={`/transactions`}>
-            <button>Back to Transactions</button>
+          <Link  className="links" to={`/transactions`}>
+            <button >Back to Transactions</button>
           </Link>
         </div>
-         <div >
+         <div  >
           {' '}
-          <Link to={`/transactions/${index}/edit`}>
-            <button>Edit Transaction</button>
+          <Link  className="links" to={`/transactions/${index}/edit`}>
+            <button className="links">Edit Transaction</button>
           </Link>
         </div> 
-         <div >
+         <div  >
           {' '}
-          <Link to={`/transactions`}>
-            <button onClick={handleDelete}>Delete Transactions</button>
+          <Link  className="links" to={`/transactions`}>
+            <button className="links" onClick={handleDelete}>Delete Transactions</button>
           </Link>
-        </div> 
-      </div>
+      
+        </div>
     </article>
   );
 };

@@ -61,7 +61,6 @@ const Transactions = () => {
       <div className='list-header'>
         <span>Date</span>
         <span>Item Name</span>
-        {/* <span>Category</span> */}
         <span>Amount</span>
       </div>
       <ul className='display-list'>{transactionsList}</ul>

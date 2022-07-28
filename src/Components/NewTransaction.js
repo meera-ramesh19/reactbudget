@@ -3,6 +3,7 @@ import axios from 'axios';
 // import { nanoid } from 'nanoid';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import confetti from 'https://cdn.skypack.dev/canvas-confetti@1';
+import './NewTransaction.css';
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -58,61 +59,66 @@ const NewTransaction = () => {
     });
   }, []);
   return (
-    <div className='New'>
+    <div className='add-trans'>
       <form onSubmit={handleSubmit}>
-        <label htmlFor='itemName'>Item Name: </label>
-        <input
-          id='itemName'
-          type='text'
-          value={transaction.itemName}
-          onChange={handleTextChange}
-          required
-          placeholder='paycheck.'
-        />
-        <br />
-        <label htmlFor='amount'>Amount: </label>
-        <input
-          id='amount'
-          type='number'
-          required
-          value={transaction.amount}
-          onChange={handleTextChange}
-          placeholder='Dollar Amount'
-        />
-        <br />
-        <label htmlFor='date'>Date: </label>
-        <input
-          id='date'
-          type='date'
-          name='date'
-          value={transaction.date}
-          onChange={handleTextChange}
-          required
-          placeholder='date'
-        />
-        <br />
-        <label htmlFor='from'>From: </label>
-        <input
-          id='from'
-          type='text'
-          onChange={handleTextChange}
-          value={transaction.from}
-          required
-          placeholder='work....'
-        />
-        <br />
-        <label htmlFor='category'>Category: </label>
-        <input
-          id='category'
-          type='text'
-          name='category'
-          value={transaction.category}
-          placeholder='food etc...'
-          onChange={handleTextChange}
-          required
-        />
-
-        <div >
+        <div>
+          <label htmlFor='itemName'>Item Name: </label>
+          <input
+            id='itemName'
+            type='text'
+            value={transaction.itemName}
+            onChange={handleTextChange}
+            required
+            placeholder='paycheck.'
+          />
+        </div>
+        <div>
+          <label htmlFor='amount'>Amount: </label>
+          <input
+            id='amount'
+            type='number'
+            required
+            value={transaction.amount}
+            onChange={handleTextChange}
+            placeholder='Dollar Amount'
+          />
+        </div>
+        <div>
+          <label htmlFor='date'>Date: </label>
+          <input
+            id='date'
+            type='date'
+            name='date'
+            value={transaction.date}
+            onChange={handleTextChange}
+            required
+            placeholder='date'
+          />
+        </div>
+        <div>
+          <label htmlFor='from'>From: </label>
+          <input
+            id='from'
+            type='text'
+            onChange={handleTextChange}
+            value={transaction.from}
+            required
+            placeholder='work....'
+          />
+        </div>
+        <div>
+          <label htmlFor='category'>Category: </label>
+          <input
+            id='category'
+            type='text'
+            name='category'
+            value={transaction.category}
+            placeholder='food etc...'
+            onChange={handleTextChange}
+            required
+          />
+        </div>
+        <div>
           <input
             type='radio'
             name='type'
@@ -121,8 +127,8 @@ const NewTransaction = () => {
             checked={type === 'income'}
             onChange={onChangeValue}
           />
-         <label style={{padding:'0 0.5rem'}} >Income</label>
-         <span ></span>
+          <label style={{ padding: '0 0.5rem' }}>Income</label>
+          <span></span>
           <input
             type='radio'
             value='expense'
@@ -135,11 +141,16 @@ const NewTransaction = () => {
         </div>
 
         <br />
-        <input type='submit' onClick={onClick} />
+        <div class='add-btn'>
+          <input type='submit' onClick={onClick} />
+          <Link
+            style={{ margin: '0 auto', textAlign: 'center' }}
+            to={`/transactions/${index}`}
+          >
+            <button>Cancel </button>
+          </Link>
+        </div>
       </form>
-      <Link style={{margin:'0 auto',textAlign:'center'}}to={`/transactions/${index}`}>
-        <button>Nevermind! </button>
-      </Link>
     </div>
   );
 };

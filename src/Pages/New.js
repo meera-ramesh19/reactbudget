@@ -2,8 +2,8 @@ import NewTransaction from '../Components/NewTransaction';
 
 const New = () => {
   return (
-    <div className='New'>
-      <h2>New</h2>
+    <div>
+      <h2 style={{textAlign:'center',marginTop:'2rem'}}>New Transaction</h2>
       <NewTransaction />
     </div>
   );

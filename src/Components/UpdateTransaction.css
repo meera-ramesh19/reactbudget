@@ -1,0 +1,14 @@
+.edit-trans {
+  display: flex;
+  padding: 5rem 0.5rem;
+  justify-content: center;
+}
+.edit-btn {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 1rem;
+}
+
+form > div {
+  padding: 1rem 0;
+}
