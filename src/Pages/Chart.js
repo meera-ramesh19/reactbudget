@@ -1,5 +1,4 @@
-import Charts from '../Components/Charts';
-
+import ChartInfo from '../Components/ChartInfo';
 
 const Chart = () => {
   return (
@@ -10,7 +9,7 @@ const Chart = () => {
         height: '100vh',
       }}
     >
-      <Charts />
+      <ChartInfo />
     </div>
   );
 };
