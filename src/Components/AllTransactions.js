@@ -6,9 +6,7 @@ import moment from 'moment';
 const API = process.env.REACT_APP_API_URL;
 
 const Transactions = () => {
-  // eslint-disable-next-line
   const [transactions, setTransactions] = useState([]);
-  //   const [totalBalance, seTotalBalance] = useState(0);
 
   useEffect(() => {
     axios
@@ -28,12 +26,11 @@ const Transactions = () => {
   const transactionsList = transactions.map((transaction, index) => {
     return (
       <li className='transaction-list' key={index}>
-      
         <p>{`${moment(transaction.date).format('MMM Do YYYY')}`}</p>
         <Link to={`/transactions/${index}`}>
           <p>{transaction.itemName}</p>
         </Link>
-      
+
         <p>${`${transaction.amount}`}</p>
       </li>
     );
