@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
@@ -33,12 +33,7 @@ const TransactionDetails = () => {
       <div className='center-card'>
         <div className='card'>
           <h2>Transaction Details</h2>
-          {/* <h6>Item Name:{transaction.itemName}</h6>
-        <h6>Date:{transaction.date}</h6>
-        <h6> From:{transaction.from}</h6>
-        <h6> Amount: {transaction.amount}</h6>
-        <h6>Category :{transaction.category}</h6>
-        <h6>Type :{transaction.type}</h6> */}
+    
           <Card className='border-0 mb-2'>
             <Card.Body>
               <Card.Title className=''>

@@ -1,6 +1,5 @@
 import { useState, useCallback } from 'react';
 import axios from 'axios';
-// import { nanoid } from 'nanoid';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import confetti from 'https://cdn.skypack.dev/canvas-confetti@1';
 import './NewTransaction.css';
@@ -17,11 +16,7 @@ const NewTransaction = () => {
     type: '',
   });
 
-  // const [itemName, setItemName] = useState('');
-  // const [amount, setAmount] = useState('');
-  // const [from, setFrom] = useState('');
-  // const [date, setDate] = useState('');
-  // const [category, setCategory] = useState('');
+ 
   const [type, setType] = useState('Expense');
 
   const navigate = useNavigate();
@@ -41,9 +36,7 @@ const NewTransaction = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //use v4,ulid or nanoid instead of uuidv4 which is deprecated
-    // let id = nanoid(); //to generate uniqeue ids
-
+    
     axios
       .post(`${API}/transactions`, transaction)
       .then(() => {

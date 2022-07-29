@@ -1,4 +1,5 @@
 import './Home.css';
+
 const Home = () => {
   return (
     <div className='home'>
@@ -6,7 +7,6 @@ const Home = () => {
         TrackerLux
       </h1>
       <div className='home-header'>
-        <p>TrackerLux helps you track all your expenses.</p>
         <p>Explore TrackerLux to help you manage your finances.</p>
       </div>
     </div>

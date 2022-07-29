@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { React, useState, useEffect} from 'react';
-// import './Page404NotFound.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -8,7 +7,6 @@ import Modal from 'react-bootstrap/Modal';
 const PageNotFound =() => {
     const [show,setShow]=useState(false);
 
-   // const handleShow=()=>setShow(true);
 
      const handleClose=(fromModal)=>setShow(false);
 

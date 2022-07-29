@@ -28,12 +28,12 @@ const Transactions = () => {
   const transactionsList = transactions.map((transaction, index) => {
     return (
       <li className='transaction-list' key={index}>
-        {/* showing error when L i used <p>{`${moment(transaction.date).format('l')}`}</p> */}
+      
         <p>{`${moment(transaction.date).format('MMM Do YYYY')}`}</p>
         <Link to={`/transactions/${index}`}>
           <p>{transaction.itemName}</p>
         </Link>
-        {/* <p>{transaction.category}</p> */}
+      
         <p>${`${transaction.amount}`}</p>
       </li>
     );

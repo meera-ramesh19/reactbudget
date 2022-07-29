@@ -1,5 +1,7 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../asset/dollar-sign.gif';
+ import logo from '../asset/dollar-sign.gif';
+
 import './NavBar.css';
 const NavBar = () => {
   return (
@@ -18,17 +20,17 @@ const NavBar = () => {
       </button>
       <button>
         <Link style={{ color: 'yellow' }} to='/transactions'>
-          Transactions
+          Show All
         </Link>
       </button>
       <button>
         <Link style={{ color: 'yellow' }} to='/transactions/new'>
-          New Transactions
+          New 
         </Link>
       </button>
       <button>
         <Link style={{ color: 'yellow' }} to='/chart'>
-          Viz Chart
+          Chart
         </Link>
       </button>
     </nav>

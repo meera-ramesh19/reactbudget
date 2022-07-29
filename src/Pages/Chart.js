@@ -1,5 +1,5 @@
 import Charts from '../Components/Charts';
-import Visuals from '../Components/Visuals';
+
 
 const Chart = () => {
   return (

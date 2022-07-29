@@ -1,5 +1,5 @@
 import ShowTransactions from '../Components/ShowTransactions';
-
+import './Show.css'
 const Show = () => {
   return (
     <div
