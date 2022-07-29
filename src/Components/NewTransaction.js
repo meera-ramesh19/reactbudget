@@ -141,7 +141,7 @@ const NewTransaction = () => {
         </div>
 
         <br />
-        <div class='add-btn'>
+        <div className='add-btn'>
           <input type='submit' onClick={onClick} />
           <Link
             style={{ margin: '0 auto', textAlign: 'center' }}

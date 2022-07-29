@@ -1,7 +1,7 @@
 import Charts from '../Components/Charts';
 import Visuals from '../Components/Visuals';
 
-const Chart = () => {
+const Visual = () => {
   return (
     <div
       style={{
@@ -10,9 +10,9 @@ const Chart = () => {
         height: '100vh',
       }}
     >
-      <Charts />
+      <Visuals />
     </div>
   );
 };
 
-export default Chart;
+export default Visual;

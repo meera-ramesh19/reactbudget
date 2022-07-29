@@ -10,7 +10,7 @@ import Index from './Pages/Index';
 import New from './Pages/New';
 import Show from './Pages/Show';
 import Chart from './Pages/Chart';
-
+import Visuals from './Pages/Visuals';
 // COMPONENTS
 import NavBar from './Components/NavBar';
 
@@ -25,7 +25,8 @@ const App = () => {
           <Route path='/transactions/new' element={<New />} />
           <Route path='/transactions/:index' element={<Show />} />
           <Route path='/transactions/:index/edit' element={<Edit />} />
-          <Route path='/chart' element={<Chart />} />
+           <Route path='/chart' element={<Chart />} /> 
+          {/* <Route path='/chart' element={<Visuals />} /> */}
           <Route path='*' element={<FourOFour />} />
         </Routes>
       </main>

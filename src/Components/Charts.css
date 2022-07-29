@@ -7,9 +7,9 @@
 }
 
 .bar {
-  background-color: #3aa70f; /* Have each bar be a nice green */
+  background-color: #079647; /* Have each bar be a nice green */
   width: 10px; /* The animation will start with each bar being 10px wide, and then expand outwards */
 }
-/* #LineChart {
-      overflow: visible; /* Just in case the axis render outside of our div, let's make sure it still displays 
-    }*/
+#LineChart {
+      overflow: visible; /* Just in case the axis render outside of our div, let's make sure it still displays */
+    }
