@@ -1,4 +1,4 @@
-/* .home {
+.home {
   background-image: url('../asset/images.jpeg');
   height: 100vh;
   margin-top: 10px;
@@ -6,7 +6,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-} */
+}
 h1{
   font-size:3rem;
 }
