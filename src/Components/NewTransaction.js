@@ -1,10 +1,20 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback,useRef} from 'react';
 import axios from 'axios';
+import ReactCanvasConfetti from "react-canvas-confetti";
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import confetti from 'https://cdn.skypack.dev/canvas-confetti@1';
 import './NewTransaction.css';
 
+
 const API = process.env.REACT_APP_API_URL;
+
+const canvasStyles = {
+  position: "fixed",
+  pointerEvents: "none",
+  width: "100%",
+  height: "100%",
+  top: 0,
+  left: 0
+};
 
 const NewTransaction = () => {
   const [transaction, setTransaction] = useState({
@@ -45,12 +55,59 @@ const NewTransaction = () => {
       .catch((c) => console.error('catch', c));
   };
 
-  const onClick = useCallback(() => {
-    confetti({
-      particleCount: 150,
-      spread: 60,
-    });
+  // const onClick = useCallback(() => {
+  //   confetti({
+  //     particleCount: 150,
+  //     spread: 60,
+  //   });
+  // }, []);
+
+
+  const refAnimationInstance = useRef(null);
+
+  const getInstance = useCallback((instance) => {
+    refAnimationInstance.current = instance;
   }, []);
+
+  const makeShot = useCallback((particleRatio, opts) => {
+    refAnimationInstance.current &&
+      refAnimationInstance.current({
+        ...opts,
+        origin: { y: 0.7 },
+        particleCount: Math.floor(200 * particleRatio)
+      });
+  }, []);
+
+  const fire = useCallback(() => {
+    makeShot(0.25, {
+      spread: 26,
+      startVelocity: 55
+    });
+
+    makeShot(0.2, {
+      spread: 60
+    });
+
+    makeShot(0.35, {
+      spread: 100,
+      decay: 0.91,
+      scalar: 0.8
+    });
+
+    makeShot(0.1, {
+      spread: 120,
+      startVelocity: 25,
+      decay: 0.92,
+      scalar: 1.2
+    });
+
+    makeShot(0.1, {
+      spread: 120,
+      startVelocity: 45
+    });
+  }, [makeShot]);
+ 
+
   return (
     <div className='add-trans'>
       <form onSubmit={handleSubmit}>
@@ -135,16 +192,19 @@ const NewTransaction = () => {
 
         <br />
         <div className='add-btn'>
-          <input type='submit' onClick={onClick} />
+          <input type='submit' onClick={fire} />
           <Link
             style={{ margin: '0 auto', textAlign: 'center' }}
             to={`/transactions/${index}`}
           >
             <button>Cancel </button>
           </Link>
+        
         </div>
       </form>
+      <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
     </div>
+
   );
 };
 

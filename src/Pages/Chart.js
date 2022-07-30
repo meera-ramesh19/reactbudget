@@ -1,4 +1,4 @@
-import ChartInfo from '../Components/ChartInfo';
+ import ChartInfo from '../Components/ChartInfo';
 
 const Chart = () => {
   return (
