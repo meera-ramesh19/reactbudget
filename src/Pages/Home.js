@@ -2,8 +2,11 @@ import './Home.css';
 
 const Home = () => {
   return (
-    <div className='home' style={{backgroundColor:'#96DED1', height: '100vh' }} >
-      <h1 style={{ color: 'green', margin: '6rem auto', textAlign: 'center'  }}>
+    <div
+      className='home'
+      style={{ backgroundColor: '#96DED1', minHeight: '100vh' }}
+    >
+      <h1 style={{ color: 'green', margin: '6rem auto', textAlign: 'center' }}>
         TrackerLux
       </h1>
       <div className='home-header'>
