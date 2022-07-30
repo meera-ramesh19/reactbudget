@@ -12,3 +12,11 @@
 form > div {
   padding: 1rem 0;
 }
+.update-btns {
+  padding: 1rem;
+  background: transparent;
+  border-radius: 1rem;
+}
+.update-btns:hover {
+  background: rgb(65, 194, 159);
+}

@@ -1,6 +1,7 @@
-import React,{ useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 const API = process.env.REACT_APP_API_URL;
 
 const UpdateTransaction = () => {
@@ -18,6 +19,21 @@ const UpdateTransaction = () => {
     type: '',
   });
 
+  const toastMixin = Swal.mixin({
+    toast: true,
+    icon: 'success',
+    title: 'General Title',
+    animation: false,
+    position: 'top-right',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer);
+      toast.addEventListener('mouseleave', Swal.resumeTimer);
+    },
+  });
+
   // const [itemName, setItemName] = useState('');
   // const [amount, setAmount] = useState('');
   // const [from, setFrom] = useState('');
@@ -30,11 +46,6 @@ const UpdateTransaction = () => {
       .get(`${API}/transactions/${index}`)
       .then((res) => {
         setTransaction(res.data);
-        // setItemName(res.data.itemName);
-        // setAmount(res.data.amount);
-        // setFrom(res.data.from);
-        // setDate(res.data.date);
-        // setCategory(res.data.category);
       })
       .catch((e) => console.error(e));
   }, [index]);
@@ -53,13 +64,19 @@ const UpdateTransaction = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // updateTransaction(transaction);
     axios
       .put(`${API}/transactions/${index}`, transaction)
       .then((res) => {
         setTransaction(res.data);
       })
       .catch((c) => console.warn('catch', c));
+
+    document.querySelector('.second').addEventListener('click', function () {
+      toastMixin.fire({
+        animation: true,
+        title: 'Updated Successfully',
+      });
+    });
   };
 
   return (
@@ -143,10 +160,10 @@ const UpdateTransaction = () => {
         </div>
 
         <div className='edit-btn'>
-          <input type='submit' />
+          <input className='update-btns second' type='submit' />
 
           <Link to={`/transactions/${index}`}>
-            <button>Back</button>
+            <button className='update-btns'>Back</button>
           </Link>
         </div>
       </form>

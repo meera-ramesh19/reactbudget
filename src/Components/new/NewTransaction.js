@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReactCanvasConfetti from 'react-canvas-confetti';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import './NewTransaction.css';
+import Swal from 'sweetalert2';
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -30,6 +31,21 @@ const NewTransaction = () => {
   const navigate = useNavigate();
   let { index } = useParams();
 
+  var toastMixin = Swal.mixin({
+    toast: true,
+    icon: 'success',
+    title: 'General Title',
+    animation: false,
+    position: 'top-right',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  });
+
   const onChangeValue = (event) => {
     setType(event.target.value);
   };
@@ -51,6 +67,12 @@ const NewTransaction = () => {
         navigate(`/transactions`);
       })
       .catch((c) => console.error('catch', c));
+      document.querySelector(".second").addEventListener('click', function(){
+        toastMixin.fire({
+          animation: true,
+          title: 'Added a transaction'
+        });
+      });
   };
 
   // const onClick = useCallback(() => {
@@ -188,12 +210,12 @@ const NewTransaction = () => {
 
         <br />
         <div className='add-btn'>
-          <input type='submit' onClick={fire} />
+          <input className='new-btns' type='submit' onClick={fire} />
           <Link
             style={{ margin: '0 auto', textAlign: 'center' }}
             to={`/transactions/${index}`}
           >
-            <button>Cancel </button>
+            <button className='new-btns'>Cancel </button>
           </Link>
         </div>
       </form>

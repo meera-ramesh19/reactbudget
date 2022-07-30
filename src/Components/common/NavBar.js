@@ -14,22 +14,28 @@ const NavBar = () => {
         />
       </div>
       <button>
-        <Link style={{ color: 'yellow' }} to='/'>
+        <Link style={{ textDecoration: 'none', color:'gray' ,padding:'0 1rem'}} to='/'>
           Home
         </Link>
       </button>
       <button>
-        <Link style={{ color: 'yellow' }} to='/transactions'>
+        <Link
+          style={{ textDecoration: 'none', color: 'gray' }}
+          to='/transactions'
+        >
           Show All
         </Link>
       </button>
       <button>
-        <Link style={{ color: 'yellow' }} to='/transactions/new'>
+        <Link
+          style={{ textDecoration: 'none', color: 'gray' }}
+          to='/transactions/new'
+        >
           New
         </Link>
       </button>
       <button>
-        <Link style={{ color: 'yellow' }} to='/chart'>
+        <Link style={{ textDeoration: 'none', color: 'gray' }} to='/chart'>
           Chart
         </Link>
       </button>

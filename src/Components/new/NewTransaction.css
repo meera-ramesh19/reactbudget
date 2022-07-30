@@ -2,16 +2,24 @@
   display: flex;
   padding: 5rem 0.5rem;
   justify-content: center;
-
 }
-.add-btn{
-    display:flex;
-    justify-content: space-around;
-    margin:0 1rem;
+.add-btn {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 1rem;
 }
 
 form > div {
-    padding:1rem 0;
+  padding: 1rem 0;
+}
+.new-btns {
+  padding: 1rem;
+  background: transparent;
+  border-radius: 1rem;
+}
+
+.new-btns:hover {
+  background: rgb(65, 194, 159);
 }
 /* body,
 html {
