@@ -1,19 +1,18 @@
-import { useState, useCallback,useRef} from 'react';
+import { useState, useCallback, useRef } from 'react';
 import axios from 'axios';
-import ReactCanvasConfetti from "react-canvas-confetti";
+import ReactCanvasConfetti from 'react-canvas-confetti';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import './NewTransaction.css';
-
 
 const API = process.env.REACT_APP_API_URL;
 
 const canvasStyles = {
-  position: "fixed",
-  pointerEvents: "none",
-  width: "100%",
-  height: "100%",
+  position: 'fixed',
+  pointerEvents: 'none',
+  width: '100%',
+  height: '100%',
   top: 0,
-  left: 0
+  left: 0,
 };
 
 const NewTransaction = () => {
@@ -26,7 +25,6 @@ const NewTransaction = () => {
     type: '',
   });
 
- 
   const [type, setType] = useState('Expense');
 
   const navigate = useNavigate();
@@ -46,7 +44,7 @@ const NewTransaction = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     axios
       .post(`${API}/transactions`, transaction)
       .then(() => {
@@ -62,7 +60,6 @@ const NewTransaction = () => {
   //   });
   // }, []);
 
-
   const refAnimationInstance = useRef(null);
 
   const getInstance = useCallback((instance) => {
@@ -74,39 +71,38 @@ const NewTransaction = () => {
       refAnimationInstance.current({
         ...opts,
         origin: { y: 0.7 },
-        particleCount: Math.floor(200 * particleRatio)
+        particleCount: Math.floor(200 * particleRatio),
       });
   }, []);
 
   const fire = useCallback(() => {
     makeShot(0.25, {
       spread: 26,
-      startVelocity: 55
+      startVelocity: 55,
     });
 
     makeShot(0.2, {
-      spread: 60
+      spread: 60,
     });
 
     makeShot(0.35, {
       spread: 100,
       decay: 0.91,
-      scalar: 0.8
+      scalar: 0.8,
     });
 
     makeShot(0.1, {
       spread: 120,
       startVelocity: 25,
       decay: 0.92,
-      scalar: 1.2
+      scalar: 1.2,
     });
 
     makeShot(0.1, {
       spread: 120,
-      startVelocity: 45
+      startVelocity: 45,
     });
   }, [makeShot]);
- 
 
   return (
     <div className='add-trans'>
@@ -199,12 +195,10 @@ const NewTransaction = () => {
           >
             <button>Cancel </button>
           </Link>
-        
         </div>
       </form>
       <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
     </div>
-
   );
 };
 

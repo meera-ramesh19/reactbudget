@@ -1,4 +1,4 @@
-import UpdateTransaction from '../Components/UpdateTransaction';
+import UpdateTransaction from '../Components/edit/UpdateTransaction';
 
 const Edit = () => {
   return (

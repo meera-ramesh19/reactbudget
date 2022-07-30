@@ -1,10 +1,14 @@
-import ShowTransactions from '../Components/ShowTransactions';
+import ShowTransactions from '../Components/show/ShowTransactions';
 
-import './Show.css'
+import './Show.css';
 const Show = () => {
   return (
     <div
-      style={{ textAlign: 'center', backgroundColor: '#96DED1', height: '100vh' }}
+      style={{
+        textAlign: 'center',
+        backgroundColor: '#96DED1',
+        height: '100vh',
+      }}
     >
       <ShowTransactions />
     </div>

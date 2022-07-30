@@ -1,4 +1,4 @@
-import NewTransaction from '../Components/NewTransaction';
+import NewTransaction from '../Components/new/NewTransaction';
 
 const New = () => {
   return (

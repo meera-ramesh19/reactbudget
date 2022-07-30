@@ -12,8 +12,8 @@ import Show from './Pages/Show';
 import Chart from './Pages/Chart';
 
 // COMPONENTS
-import NavBar from './Components/NavBar';
-import Footer from './Components/Footer';
+import NavBar from './Components/common/NavBar';
+import Footer from './Components/common/Footer';
 
 const App = () => {
   return (
@@ -26,10 +26,10 @@ const App = () => {
           <Route path='/transactions/new' element={<New />} />
           <Route path='/transactions/:index' element={<Show />} />
           <Route path='/transactions/:index/edit' element={<Edit />} />
-           <Route path='/chart' element={<Chart />} /> 
+          <Route path='/chart' element={<Chart />} />
           <Route path='*' element={<FourOFour />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </main>
     </div>
   );

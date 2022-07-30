@@ -1,4 +1,4 @@
-import AllTransactions from '../Components/AllTransactions';
+import AllTransactions from '../Components/index/AllTransactions';
 
 const Index = () => {
   return (
