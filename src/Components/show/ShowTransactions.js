@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Card from 'react-bootstrap/Card';
+import './ShowTransactions.css';
 import Swal from 'sweetalert2';
 
 const API = process.env.REACT_APP_API_URL;
@@ -20,6 +20,7 @@ const TransactionDetails = () => {
       .catch(() => navigate('/not-found'));
   }, [index, navigate]);
 
+  //toast from sweetalert2 
   var toastMixin = Swal.mixin({
     toast: true,
     icon: 'success',
@@ -34,6 +35,27 @@ const TransactionDetails = () => {
       toast.addEventListener('mouseleave', Swal.resumeTimer);
     },
   });
+
+  //Delete functions
+  const deleteConfirmationBox = () => {
+    document.querySelector('.second').addEventListener('click', function () {
+      toastMixin.fire({
+        animation: true,
+        title: 'Successfully Deleted',
+      });
+    });
+    navigate('/transactions');
+  };
+
+  const handleDelete = () => {
+    axios
+      .delete(`${API}/transactions/${index}`)
+      .then(() => {
+        deleteConfirmationBox();
+      })
+      .catch((e) => console.error(e));
+  };
+
 
   const confirmDelete = () => {
     Swal.fire({
@@ -51,61 +73,44 @@ const TransactionDetails = () => {
     });
   };
 
-  const handleDelete = () => {
-    axios
-      .delete(`${API}/transactions/${index}`)
-      .then(() => {
-        navigate(`/transactions`);
-      })
-      .catch((e) => console.error(e));
-    document.querySelector('.second').addEventListener('click', function () {
-      toastMixin.fire({
-        animation: true,
-        title: 'Successfully Deleted',
-      });
-    });
-  };
 
   return (
     <article>
-      <div className='center-card'>
-        <div className='card'>
-          <h2>Transaction Details</h2>
+      <h2 style={{ marginBottom: '6rem' }}>Transaction Details</h2>
+      <div className="cards">
+        <p>
+          Item Name:<span className='items'>{transaction.itemName}</span>
+        </p>
 
-          <Card className='border-0 mb-2'>
-            <Card.Body>
-              <Card.Title className=''>
-                Item Name:{transaction.itemName}
-              </Card.Title>
-              <br />
-              <Card.Subtitle>Date:{transaction.date}</Card.Subtitle>
-              <Card.Text>From:{transaction.from}</Card.Text>
-              <Card.Text>Amount: {transaction.amount}</Card.Text>
-              <Card.Text>Category :{transaction.category}</Card.Text>
-              <Card.Text>Type :{transaction.type}</Card.Text>
-            </Card.Body>
-          </Card>
+        <p>Date:<span className='items'>{transaction.date}</span></p>
+        <p>From: <span className='items'>{transaction.from}</span></p>
+        <p>Amount: <span className='items'>{transaction.amount}</span></p>
+        <p>Category :<span className='items'>{transaction.category}</span></p>
+        <p>Type :<span className='items'>{transaction.type}</span></p>
+      </div>
+
+      <div className='showNavigation'>
+        <div>
+          {' '}
+          <Link to={`/transactions`}>
+            <button className='show-btns'>Back </button>
+          </Link>
         </div>
-      </div>
-      <div className='show-nav'>
-        {' '}
-        <Link className='links' to={`/transactions`}>
-          <button className='show-btns'>Back to Transactions</button>
-        </Link>
-      </div>
-      <div>
-        {' '}
-        <Link className='links' to={`/transactions/${index}/edit`}>
-          <button className='show-btns'>Edit Transaction</button>
-        </Link>
-      </div>
-      <div>
-        {' '}
-        <Link className='links' to={`/transactions`}>
-          <button className='show-btns' onClick={confirmDelete}>
-            Delete Transactions
-          </button>
-        </Link>
+        <div>
+          {' '}
+          <Link to={`/transactions/${index}/edit`}>
+            <button className='show-btns'>Edit </button>
+          </Link>
+        </div>
+        <div>
+          {' '}
+          <Link to={`/transactions`}>
+            <button className='show-btns' onClick={confirmDelete}>
+            <button style={{ border: 'none' }} className='second'></button>
+              Delete
+            </button>
+          </Link>
+        </div>
       </div>
     </article>
   );

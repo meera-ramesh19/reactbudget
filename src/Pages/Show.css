@@ -1,12 +1,10 @@
 * {
-    box-sizing: border-box;
-    margin:0;
-      padding:0;
-  }
-  .show-details{
-      margin-top:-5rem;
-      padding:4rem 4rem;
-      box-shadow: none;
-  }
-  
-  
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.show-details {
+  margin-top: -5rem;
+  padding: 4rem 4rem;
+  box-shadow: none;
+}

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './AllTransactions.css';
 import moment from 'moment';
+
 const API = process.env.REACT_APP_API_URL;
 
 const Transactions = () => {
@@ -37,7 +38,7 @@ const Transactions = () => {
   });
 
   return (
-    <section className='Transactions'>
+    <div className='Transactions'>
       <h2 style={{ textAlign: 'center' }}>
         Account Balance:
         <span
@@ -61,7 +62,7 @@ const Transactions = () => {
         <span>Amount</span>
       </div>
       <ul className='display-list'>{transactionsList}</ul>
-    </section>
+    </div>
   );
 };
 

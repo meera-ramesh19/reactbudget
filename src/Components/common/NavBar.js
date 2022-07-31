@@ -14,7 +14,10 @@ const NavBar = () => {
         />
       </div>
       <button>
-        <Link style={{ textDecoration: 'none', color:'gray' ,padding:'0 1rem'}} to='/'>
+        <Link
+          style={{ textDecoration: 'none', color: 'gray', padding: '0 1rem' }}
+          to='/'
+        >
           Home
         </Link>
       </button>
@@ -27,10 +30,7 @@ const NavBar = () => {
         </Link>
       </button>
       <button>
-        <Link
-          style={{ textDecoration: 'none', color: 'gray' }}
-          to='/transactions/new'
-        >
+        <Link style={{ textDecoration: 'none', color: 'gray' }} to='/new'>
           New
         </Link>
       </button>

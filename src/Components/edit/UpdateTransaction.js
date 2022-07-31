@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 const API = process.env.REACT_APP_API_URL;
 
 const UpdateTransaction = () => {
   let { index } = useParams();
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [transaction, setTransaction] = useState({
     transId: '',
@@ -34,13 +34,6 @@ const UpdateTransaction = () => {
     },
   });
 
-  // const [itemName, setItemName] = useState('');
-  // const [amount, setAmount] = useState('');
-  // const [from, setFrom] = useState('');
-  // const [date, setDate] = useState('');
-  // const [category, setCategory] = useState('');
-  const [type, setType] = useState('Expense');
-
   useEffect(() => {
     axios
       .get(`${API}/transactions/${index}`)
@@ -49,10 +42,6 @@ const UpdateTransaction = () => {
       })
       .catch((e) => console.error(e));
   }, [index]);
-
-  const onRadioValue = (event) => {
-    setType(event.target.value);
-  };
 
   const onInputChange = (event) => {
     console.log(event.target.value);
@@ -67,16 +56,17 @@ const UpdateTransaction = () => {
     axios
       .put(`${API}/transactions/${index}`, transaction)
       .then((res) => {
-        setTransaction(res.data);
+        document
+          .querySelector('.second')
+          .addEventListener('click', function () {
+            toastMixin.fire({
+              animation: true,
+              title: 'Updated Successfully',
+            });
+          });
+        navigate(`/transactions`);
       })
       .catch((c) => console.warn('catch', c));
-
-    document.querySelector('.second').addEventListener('click', function () {
-      toastMixin.fire({
-        animation: true,
-        title: 'Updated Successfully',
-      });
-    });
   };
 
   return (
@@ -139,32 +129,27 @@ const UpdateTransaction = () => {
         </div>
 
         <div>
+          <label htmlFor='type'>Type: </label>
           <input
-            type='radio'
+            id='type'
+            type='text'
             name='type'
-            value='income'
-            id='income'
-            checked={type === 'income'}
-            onChange={onRadioValue}
+            value={transaction.type}
+            placeholder='Enter Income or Expense'
+            onChange={onInputChange}
+            required
           />
-          Income
-          <input
-            type='radio'
-            value='expense'
-            id='expense'
-            name='type'
-            checked={type === 'expense'}
-            onChange={onRadioValue}
-          />
-          Expense
         </div>
 
         <div className='edit-btn'>
-          <input className='update-btns second' type='submit' />
-
-          <Link to={`/transactions/${index}`}>
-            <button className='update-btns'>Back</button>
-          </Link>
+          <div>
+            <input className='update-btns second' type='submit' />
+          </div>
+          <div>
+            <Link to={`/transactions/${index}`}>
+              <button className='update-btns'>Back</button>
+            </Link>
+          </div>
         </div>
       </form>
     </div>

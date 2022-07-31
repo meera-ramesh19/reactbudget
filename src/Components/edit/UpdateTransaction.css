@@ -3,20 +3,23 @@
   padding: 5rem 0.5rem;
   justify-content: center;
 }
-.edit-btn {
-  display: flex;
-  justify-content: space-around;
-  margin: 0 1rem;
-}
 
 form > div {
   padding: 1rem 0;
 }
-.update-btns {
+.update-btns input,
+.update-btns button{
   padding: 1rem;
   background: transparent;
   border-radius: 1rem;
 }
 .update-btns:hover {
   background: rgb(65, 194, 159);
+}
+
+.edit-btn {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+ 
 }

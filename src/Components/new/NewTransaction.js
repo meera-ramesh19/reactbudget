@@ -17,6 +17,10 @@ const canvasStyles = {
 };
 
 const NewTransaction = () => {
+  const navigate = useNavigate();
+  let { index } = useParams();
+
+  //declare states
   const [transaction, setTransaction] = useState({
     itemName: '',
     amount: '',
@@ -26,10 +30,12 @@ const NewTransaction = () => {
     type: '',
   });
 
-  const [type, setType] = useState('Expense');
-
-  const navigate = useNavigate();
-  let { index } = useParams();
+  // const [itemName, setItemName] = useState('');
+  // const [amount, setAmount] = useState(0);
+  // const [date, setDate] = useState('');
+  // const [from, setFrom] = useState('');
+  // const [category, setCategory] = useState('');
+  // const [type, setType] = useState('Expense');
 
   var toastMixin = Swal.mixin({
     toast: true,
@@ -41,46 +47,10 @@ const NewTransaction = () => {
     timer: 3000,
     timerProgressBar: true,
     didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
+      toast.addEventListener('mouseenter', Swal.stopTimer);
+      toast.addEventListener('mouseleave', Swal.resumeTimer);
+    },
   });
-
-  const onChangeValue = (event) => {
-    setType(event.target.value);
-  };
-
-  const handleTextChange = (event) => {
-    console.log(event.target.value);
-    setTransaction({
-      ...transaction,
-      [event.target.id]: event.target.value,
-    });
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    axios
-      .post(`${API}/transactions`, transaction)
-      .then(() => {
-        navigate(`/transactions`);
-      })
-      .catch((c) => console.error('catch', c));
-      document.querySelector(".second").addEventListener('click', function(){
-        toastMixin.fire({
-          animation: true,
-          title: 'Added a transaction'
-        });
-      });
-  };
-
-  // const onClick = useCallback(() => {
-  //   confetti({
-  //     particleCount: 150,
-  //     spread: 60,
-  //   });
-  // }, []);
 
   const refAnimationInstance = useRef(null);
 
@@ -98,6 +68,7 @@ const NewTransaction = () => {
   }, []);
 
   const fire = useCallback(() => {
+    console.log('here');
     makeShot(0.25, {
       spread: 26,
       startVelocity: 55,
@@ -125,6 +96,43 @@ const NewTransaction = () => {
       startVelocity: 45,
     });
   }, [makeShot]);
+
+  // const onChangeValue = (event) => {
+  //   console.log(event.target.value);
+  //   setType({  [event.target.id]: event.target.value });
+  // };
+
+  const handleTextChange = (event) => {
+    console.log(event.target.value);
+    setTransaction({
+      ...transaction,
+      [event.target.id]: event.target.value,
+    });
+  };
+
+  // const addTransaction = (transdetails) => {
+  //   let details = [...transaction, transdetails];
+  //   setTransaction(details);
+  // };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    axios
+      .post(`${API}/transactions`, transaction)
+      .then(() => {
+        document
+          .querySelector('.second')
+          .addEventListener('click', function () {
+            toastMixin.fire({
+              animation: true,
+              title: 'Added a transaction',
+            });
+          });
+        navigate(`/transactions`);
+      })
+      .catch((c) => console.error('catch', c));
+  };
 
   return (
     <div className='add-trans'>
@@ -187,39 +195,31 @@ const NewTransaction = () => {
           />
         </div>
         <div>
+          <label htmlFor='type'>Type: </label>
           <input
-            type='radio'
+            id='type'
+            type='text'
             name='type'
-            value='income'
-            id='income'
-            checked={type === 'income'}
-            onChange={onChangeValue}
+            value={transaction.type}
+            placeholder='Enter Income or Expense'
+            onChange={handleTextChange}
+            required
           />
-          <label style={{ padding: '0 0.5rem' }}>Income</label>
-          <span></span>
-          <input
-            type='radio'
-            value='expense'
-            id='expense'
-            name='type'
-            checked={type === 'expense'}
-            onChange={onChangeValue}
-          />
-          Expense
         </div>
 
         <br />
         <div className='add-btn'>
           <input className='new-btns' type='submit' onClick={fire} />
+          <button style={{ border: 'none' }} className='second'></button>
           <Link
             style={{ margin: '0 auto', textAlign: 'center' }}
-            to={`/transactions/${index}`}
+            to={`/transactions`}
           >
             <button className='new-btns'>Cancel </button>
           </Link>
         </div>
+        <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
       </form>
-      <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
     </div>
   );
 };

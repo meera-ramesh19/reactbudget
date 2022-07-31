@@ -1,8 +1,12 @@
 import './Home.css';
+import { motion } from 'framer-motion';
 
 const Home = () => {
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
       className='home'
       style={{ backgroundColor: '#96DED1', minHeight: '100vh' }}
     >
@@ -12,7 +16,7 @@ const Home = () => {
       <div className='home-header'>
         <p>Explore TrackerLux to help you manage your finances.</p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
