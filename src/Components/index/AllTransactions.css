@@ -9,11 +9,13 @@
 }
 .list-header span {
   text-align: center;
-  padding: 1rem 2rem 1rem 3rem;
+  /* padding: 0 2rem 0 3rem; */
   font-size: 1.8rem;
-  color: yellow;
+  color: green;
   background: black;
-  margin:0  0 0  7rem;
+  margin: 0 0 0 5rem;
+  padding: 0 0.5rem;
+  
 }
 ul {
   text-align: left;
