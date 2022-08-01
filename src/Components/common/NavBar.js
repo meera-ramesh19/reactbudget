@@ -23,19 +23,25 @@ const NavBar = () => {
       </button>
       <button>
         <Link
-          style={{ textDecoration: 'none', color: 'green',padding:'0 1rem' }}
+          style={{ textDecoration: 'none', color: 'green', padding: '0 1rem' }}
           to='/transactions'
         >
           Show All
         </Link>
       </button>
       <button>
-        <Link style={{ textDecoration: 'none', color: 'green' ,padding:'0 1rem' }} to='/new'>
+        <Link
+          style={{ textDecoration: 'none', color: 'green', padding: '0 1rem' }}
+          to='/new'
+        >
           New
         </Link>
       </button>
       <button>
-        <Link style={{ textDeoration: 'none', color: 'green' ,padding:'0 1rem'}} to='/chart'>
+        <Link
+          style={{ textDeoration: 'none', color: 'green', padding: '0 1rem' }}
+          to='/chart'
+        >
           Chart
         </Link>
       </button>

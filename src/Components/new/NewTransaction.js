@@ -18,7 +18,7 @@ const canvasStyles = {
 
 const NewTransaction = () => {
   const navigate = useNavigate();
-  let { index } = useParams();
+   let { index} = useParams();
 
   //declare states
   const [transaction, setTransaction] = useState({

@@ -20,7 +20,7 @@ const TransactionDetails = () => {
       .catch(() => navigate('/not-found'));
   }, [index, navigate]);
 
-  //toast from sweetalert2 
+  //toast from sweetalert2
   var toastMixin = Swal.mixin({
     toast: true,
     icon: 'success',
@@ -37,6 +37,7 @@ const TransactionDetails = () => {
   });
 
   //Delete functions
+
   const deleteConfirmationBox = () => {
     document.querySelector('.second').addEventListener('click', function () {
       toastMixin.fire({
@@ -44,7 +45,6 @@ const TransactionDetails = () => {
         title: 'Successfully Deleted',
       });
     });
-    navigate('/transactions');
   };
 
   const handleDelete = () => {
@@ -52,10 +52,10 @@ const TransactionDetails = () => {
       .delete(`${API}/transactions/${index}`)
       .then(() => {
         deleteConfirmationBox();
+        navigate('/transactions');
       })
       .catch((e) => console.error(e));
   };
-
 
   const confirmDelete = () => {
     Swal.fire({
@@ -73,20 +73,29 @@ const TransactionDetails = () => {
     });
   };
 
-
   return (
     <article>
       <h2 style={{ marginBottom: '6rem' }}>Transaction Details</h2>
-      <div className="cards">
+      <div className='cards'>
         <p>
           Item Name:<span className='items'>{transaction.itemName}</span>
         </p>
 
-        <p>Date:<span className='items'>{transaction.date}</span></p>
-        <p>From: <span className='items'>{transaction.from}</span></p>
-        <p>Amount: <span className='items'>{transaction.amount}</span></p>
-        <p>Category :<span className='items'>{transaction.category}</span></p>
-        <p>Type :<span className='items'>{transaction.type}</span></p>
+        <p>
+          Date:<span className='items'>{transaction.date}</span>
+        </p>
+        <p>
+          From: <span className='items'>{transaction.from}</span>
+        </p>
+        <p>
+          Amount: <span className='items'>{transaction.amount}</span>
+        </p>
+        <p>
+          Category :<span className='items'>{transaction.category}</span>
+        </p>
+        <p>
+          Type :<span className='items'>{transaction.type}</span>
+        </p>
       </div>
 
       <div className='showNavigation'>
@@ -106,7 +115,7 @@ const TransactionDetails = () => {
           {' '}
           <Link to={`/transactions`}>
             <button className='show-btns' onClick={confirmDelete}>
-            <button style={{ border: 'none' }} className='second'></button>
+              <button style={{ border: 'none' }} className='second'></button>
               Delete
             </button>
           </Link>
