@@ -18,13 +18,13 @@ const canvasStyles = {
 
 const NewTransaction = () => {
   const navigate = useNavigate();
-   let { index} = useParams();
+  let { index } = useParams();
 
   //declare states
   const [transaction, setTransaction] = useState({
     itemName: '',
     amount: '',
-    date: '',
+    userDate: '',
     from: '',
     category: '',
     type: '',
@@ -119,7 +119,7 @@ const NewTransaction = () => {
     event.preventDefault();
 
     axios
-      .post(`${API}/transactions`, transaction)
+      .post(`${API}/api/transactions`, transaction)
       .then(() => {
         document
           .querySelector('.second')
@@ -160,12 +160,12 @@ const NewTransaction = () => {
           />
         </div>
         <div>
-          <label htmlFor='date'>Date: </label>
+          <label htmlFor='userDate'>Date: </label>
           <input
-            id='date'
+            id='userDate'
             type='date'
-            name='date'
-            value={transaction.date}
+            // name='date'
+            value={transaction.userDate}
             onChange={handleTextChange}
             required
             placeholder='date'
@@ -176,6 +176,7 @@ const NewTransaction = () => {
           <input
             id='from'
             type='text'
+            // name='from'
             onChange={handleTextChange}
             value={transaction.from}
             required
@@ -187,7 +188,7 @@ const NewTransaction = () => {
           <input
             id='category'
             type='text'
-            name='category'
+            // name='category'
             value={transaction.category}
             placeholder='food etc...'
             onChange={handleTextChange}
@@ -195,12 +196,12 @@ const NewTransaction = () => {
           />
         </div>
         <div>
-          <label htmlFor='type'>Type: </label>
+          <label htmlFor='sourcetype'>Type: </label>
           <input
-            id='type'
+            id='sourcetype'
             type='text'
-            name='type'
-            value={transaction.type}
+            // name='sourceType'
+            value={transaction.sourcetype}
             placeholder='Enter Income or Expense'
             onChange={handleTextChange}
             required

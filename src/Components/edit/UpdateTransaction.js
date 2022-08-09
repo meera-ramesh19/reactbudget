@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import moment from 'moment';
 const API = process.env.REACT_APP_API_URL;
 
 const UpdateTransaction = () => {
@@ -10,13 +11,13 @@ const UpdateTransaction = () => {
   const navigate = useNavigate();
 
   const [transaction, setTransaction] = useState({
-    transId: '',
+    // transId: '',
     itemName: '',
     amount: 0,
-    date: '',
+    userDate: '',
     from: '',
     category: '',
-    type: '',
+    sourcetype: '',
   });
 
   const toastMixin = Swal.mixin({
@@ -36,9 +37,17 @@ const UpdateTransaction = () => {
 
   useEffect(() => {
     axios
-      .get(`${API}/transactions/${index}`)
+      .get(`${API}/api/transactions/${index}`)
       .then((res) => {
-        setTransaction(res.data);
+        // console.log(res.data);
+        setTransaction({
+          itemName: res.data.itemName,
+          amount: res.data.amount,
+          userDate: res.data.userDate.split('T')[0],
+          from: res.data.from,
+          category: res.data.category,
+          sourcetype: res.data.sourcetype,
+        });
       })
       .catch((e) => console.error(e));
   }, [index]);
@@ -54,7 +63,7 @@ const UpdateTransaction = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .put(`${API}/transactions/${index}`, transaction)
+      .put(`${API}/api/transactions/${index}`, transaction)
       .then((res) => {
         document
           .querySelector('.second')
@@ -96,12 +105,12 @@ const UpdateTransaction = () => {
           />
         </div>
         <div>
-          <label htmlFor='date'>Date:</label>
+          <label htmlFor='userDate'>Date:</label>
           <input
-            id='date'
+            id='userDate'
             type='date'
-            name='date'
-            value={transaction.date}
+            name='userDate'
+            value={transaction.userDate}
             onChange={onInputChange}
           />
         </div>
@@ -129,27 +138,31 @@ const UpdateTransaction = () => {
         </div>
 
         <div>
-          <label htmlFor='type'>Type: </label>
+          <label htmlFor='sourcetype'>Type: </label>
           <input
-            id='type'
+            id='sourcetype'
             type='text'
-            name='type'
-            value={transaction.type}
+            name='sourcetype'
+            value={transaction.sourcetype}
             placeholder='Enter Income or Expense'
             onChange={onInputChange}
             required
           />
         </div>
 
-        <div className='edit-btn'>
-          <div>
-            <input className='update-btns second' type='submit' />
-          </div>
-          <div>
+        <div className='edit-btn' style={{display: 'flex',
+          justifyContent: 'space-around',
+          alignItems:'center',
+          width: '100%',
+          padding:'2rem 30rem'}}>
+          {/* <div> */}
+            <input style={{padding:'1rem 1.5rem',borderRadius:'1rem',background:'transparent'}}className='update-btns second' type='submit' />
+          {/* </div>
+          <div> */}
             <Link to={`/transactions/${index}`}>
-              <button className='update-btns'>Back</button>
+              <button  style={{padding:'1rem 1.5rem',borderRadius:'1rem',background:'transparent'}}className='update-btns'>Back</button>
             </Link>
-          </div>
+          {/* </div> */}
         </div>
       </form>
     </div>

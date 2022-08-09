@@ -11,12 +11,12 @@ const Charts = () => {
 
   const incomeArr = chartData
     .filter((ele) => {
-      return ele.type === 'income';
+      return ele.sourcetype === 'income';
     })
     .map((ele) => ele.amount);
   const expenseArr = chartData
     .filter((ele) => {
-      return ele.type === 'expense';
+      return ele.sourcetype === 'expense';
     })
     .map((ele) => ele.amount);
   const category = chartData.map((ele) => ele.category);
@@ -24,7 +24,7 @@ const Charts = () => {
 
   useEffect(() => {
     axios
-      .get(`${API}/transactions`)
+      .get(`${API}/api/transactions`)
       .then((res) => {
         setChartData(res.data);
       })

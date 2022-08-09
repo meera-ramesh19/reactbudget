@@ -3,6 +3,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './ShowTransactions.css';
 import Swal from 'sweetalert2';
+import moment from 'moment';
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -15,10 +16,13 @@ const TransactionDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`${API}/transactions/${index}`)
-      .then((response) => setTransaction(response.data))
+      .get(`${API}/api/transactions/${index}`)
+      .then((response) => {
+        setTransaction(response.data);
+        console.log(transaction);
+      })
       .catch(() => navigate('/not-found'));
-  }, [index, navigate]);
+  }, [index, navigate,transaction]);
 
   //toast from sweetalert2
   var toastMixin = Swal.mixin({
@@ -49,7 +53,7 @@ const TransactionDetails = () => {
 
   const handleDelete = () => {
     axios
-      .delete(`${API}/transactions/${index}`)
+      .delete(`${API}/api/transactions/${index}`)
       .then(() => {
         deleteConfirmationBox();
         navigate('/transactions');
@@ -77,12 +81,14 @@ const TransactionDetails = () => {
     <article>
       <h2 style={{ marginBottom: '6rem' }}>Transaction Details</h2>
       <div className='cards'>
-        <p>
+        <p>Id:
+          <span className='items'>{transaction.id}</span>
+        </p>
+         <p>
           Item Name:<span className='items'>{transaction.itemName}</span>
         </p>
-
         <p>
-          Date:<span className='items'>{transaction.date}</span>
+          Date:<span className='items'>{`${moment(transaction.userDate).format(' MMM DD YYYY')}`}</span>
         </p>
         <p>
           From: <span className='items'>{transaction.from}</span>
@@ -94,14 +100,14 @@ const TransactionDetails = () => {
           Category :<span className='items'>{transaction.category}</span>
         </p>
         <p>
-          Type :<span className='items'>{transaction.type}</span>
-        </p>
+          Type :<span className='items'>{transaction.sourcetype}</span>
+        </p> 
       </div>
 
       <div className='showNavigation'>
         <div>
           {' '}
-          <Link to={`/transactions`}>
+          <Link to={'/transactions'}>
             <button className='show-btns'>Back </button>
           </Link>
         </div>
@@ -113,7 +119,7 @@ const TransactionDetails = () => {
         </div>
         <div>
           {' '}
-          <Link to={`/transactions`}>
+          <Link to={'/transactions'}>
             <button className='show-btns' onClick={confirmDelete}>
               <button style={{ border: 'none' }} className='second'></button>
               Delete

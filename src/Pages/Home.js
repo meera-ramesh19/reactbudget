@@ -1,6 +1,6 @@
 import './Home.css';
 import { motion } from 'framer-motion';
-
+// import { HelmetProvider, Helmet } from "react-helmet-async";
 const Home = () => {
   return (
     <motion.div
@@ -10,6 +10,11 @@ const Home = () => {
       className='home'
       style={{ backgroundColor: '#96DED1', minHeight: '100vh' }}
     >
+       {/* <HelmetProvider>
+      <Helmet>
+        <title>TrackerLux| Home</title>
+      </Helmet>
+    </HelmetProvider> */}
       <h1 style={{ color: 'green', margin: '6rem auto', textAlign: 'center' }}>
         TrackerLux
       </h1>

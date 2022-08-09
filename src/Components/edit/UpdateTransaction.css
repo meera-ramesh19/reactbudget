@@ -9,7 +9,7 @@ form > div {
 }
 .update-btns input,
 .update-btns button{
-  padding: 1rem;
+  padding: 3rem;
   background: transparent;
   border-radius: 1rem;
 }
@@ -17,9 +17,4 @@ form > div {
   background: rgb(65, 194, 159);
 }
 
-.edit-btn {
-  display: flex;
-  justify-content: space-around;
-  width: 50%;
- 
-}
+
