@@ -5,7 +5,7 @@
 
 [Frontend deployment](https://trackerluxe-react.netlify.app/)
 
-[Backend deploymnent](https://boiling-reaches-40375.herokuapp.com/transactions)
+[Backend deploymnent](https://pure-oasis-60497.herokuapp.com/api/transactions)
 
 
 
