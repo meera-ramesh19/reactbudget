@@ -12,13 +12,11 @@ const Charts = () => {
   const incomeArr = chartData
     .filter((ele) => {
       return ele.sourcetype === 'income';
-    })
-    .map((ele) => ele.amount);
+    }).map((ele) => ele.amount);
   const expenseArr = chartData
     .filter((ele) => {
       return ele.sourcetype === 'expense';
-    })
-    .map((ele) => ele.amount);
+    }).map((ele) => ele.amount);
   const category = chartData.map((ele) => ele.category);
   const nameArr = chartData.map((ele) => ele.itemName);
 

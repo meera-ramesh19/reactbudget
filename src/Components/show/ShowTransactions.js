@@ -12,17 +12,17 @@ const TransactionDetails = () => {
 
   let navigate = useNavigate();
 
-  let { index } = useParams();
+  let { id } = useParams();
 
   useEffect(() => {
     axios
-      .get(`${API}/api/transactions/${index}`)
+      .get(`${API}/api/transactions/${id}`)
       .then((response) => {
         setTransaction(response.data);
         console.log(transaction);
       })
       .catch(() => navigate('/not-found'));
-  }, [index, navigate,transaction]);
+  }, [id, navigate, transaction]);
 
   //toast from sweetalert2
   var toastMixin = Swal.mixin({
@@ -53,7 +53,7 @@ const TransactionDetails = () => {
 
   const handleDelete = () => {
     axios
-      .delete(`${API}/api/transactions/${index}`)
+      .delete(`${API}/api/transactions/${id}`)
       .then(() => {
         deleteConfirmationBox();
         navigate('/transactions');
@@ -81,14 +81,18 @@ const TransactionDetails = () => {
     <article>
       <h2 style={{ marginBottom: '6rem' }}>Transaction Details</h2>
       <div className='cards'>
-        <p>Id:
+        <p>
+          Id:
           <span className='items'>{transaction.id}</span>
         </p>
-         <p>
+        <p>
           Item Name:<span className='items'>{transaction.itemName}</span>
         </p>
         <p>
-          Date:<span className='items'>{`${moment(transaction.userDate).format(' MMM DD YYYY')}`}</span>
+          Date:
+          <span className='items'>{`${moment(transaction.userDate).format(
+            ' MMM DD YYYY'
+          )}`}</span>
         </p>
         <p>
           From: <span className='items'>{transaction.from}</span>
@@ -101,7 +105,7 @@ const TransactionDetails = () => {
         </p>
         <p>
           Type :<span className='items'>{transaction.sourcetype}</span>
-        </p> 
+        </p>
       </div>
 
       <div className='showNavigation'>
@@ -113,7 +117,7 @@ const TransactionDetails = () => {
         </div>
         <div>
           {' '}
-          <Link to={`/transactions/${index}/edit`}>
+          <Link to={`/transactions/${id}/edit`}>
             <button className='show-btns'>Edit </button>
           </Link>
         </div>

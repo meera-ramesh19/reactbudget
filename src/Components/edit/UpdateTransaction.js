@@ -6,7 +6,7 @@ import moment from 'moment';
 const API = process.env.REACT_APP_API_URL;
 
 const UpdateTransaction = () => {
-  let { index } = useParams();
+  let { id } = useParams();
 
   const navigate = useNavigate();
 
@@ -37,7 +37,7 @@ const UpdateTransaction = () => {
 
   useEffect(() => {
     axios
-      .get(`${API}/api/transactions/${index}`)
+      .get(`${API}/api/transactions/${id}`)
       .then((res) => {
         // console.log(res.data);
         setTransaction({
@@ -50,7 +50,7 @@ const UpdateTransaction = () => {
         });
       })
       .catch((e) => console.error(e));
-  }, [index]);
+  }, [id]);
 
   const onInputChange = (event) => {
     console.log(event.target.value);
@@ -63,7 +63,7 @@ const UpdateTransaction = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .put(`${API}/api/transactions/${index}`, transaction)
+      .put(`${API}/api/transactions/${id}`, transaction)
       .then((res) => {
         document
           .querySelector('.second')
@@ -150,18 +150,40 @@ const UpdateTransaction = () => {
           />
         </div>
 
-        <div className='edit-btn' style={{display: 'flex',
-          justifyContent: 'space-around',
-          alignItems:'center',
-          width: '100%',
-          padding:'2rem 30rem'}}>
+        <div
+          className='edit-btn'
+          style={{
+            display: 'flex',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            width: '100%',
+            padding: '2rem 30rem',
+          }}
+        >
           {/* <div> */}
-            <input style={{padding:'1rem 1.5rem',borderRadius:'1rem',background:'transparent'}}className='update-btns second' type='submit' />
+          <input
+            style={{
+              padding: '1rem 1.5rem',
+              borderRadius: '1rem',
+              background: 'transparent',
+            }}
+            className='update-btns second'
+            type='submit'
+          />
           {/* </div>
           <div> */}
-            <Link to={`/transactions/${index}`}>
-              <button  style={{padding:'1rem 1.5rem',borderRadius:'1rem',background:'transparent'}}className='update-btns'>Back</button>
-            </Link>
+          <Link to={`/transactions/${id}`}>
+            <button
+              style={{
+                padding: '1rem 1.5rem',
+                borderRadius: '1rem',
+                background: 'transparent',
+              }}
+              className='update-btns'
+            >
+              Back
+            </button>
+          </Link>
           {/* </div> */}
         </div>
       </form>

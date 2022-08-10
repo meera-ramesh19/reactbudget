@@ -35,10 +35,8 @@ const ChartMap = (props) => {
     },
   };
 
- 
-
   const data = {
-     labels:[nameArr],
+    labels: [nameArr],
     datasets: [
       {
         label: 'Income',
@@ -48,7 +46,7 @@ const ChartMap = (props) => {
       {
         label: 'Expense',
         data: expenseArr,
-        backgroundColor: 'rgba(0, 0, 139, 0.5)',
+        backgroundColor: 'rgba(53, 162, 235, 0.5)',
       },
     ],
   };

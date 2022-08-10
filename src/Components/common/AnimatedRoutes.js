@@ -23,8 +23,8 @@ const AnimatedRoutes = () => {
 
             <Route path='/transactions' element={<Index />} />
             <Route path='/new' element={<New />} />
-            <Route path='/transactions/:index' element={<Show />} />
-            <Route path='/transactions/:index/edit' element={<Edit />} />
+            <Route path='/transactions/:id' element={<Show />} />
+            <Route path='/transactions/:id/edit' element={<Edit />} />
             <Route path='/chart' element={<Chart />} />
             <Route path='*' element={<FourOFour />} />
           </Routes>
