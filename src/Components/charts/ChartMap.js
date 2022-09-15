@@ -97,8 +97,7 @@ const ChartMap = (props) => {
   };
   const doughnutData = {
     labels: dates,
-    width: 100,
-    height: 100,
+
     datasets: [
       {
         label: 'income',
