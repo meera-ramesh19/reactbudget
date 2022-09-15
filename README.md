@@ -8,7 +8,19 @@
 [Backend deploymnent](https://pure-oasis-60497.herokuapp.com/api/transactions)
 
 
+<img src="alltransactions.png" alt="pics of transactions"/>
 
+<img src="transactiondetails.png" alt="pics of transactions"/>
+
+<img src="newtransaction.png" alt="pics of transactions"/>
+
+
+<img src="addedtrans.png" alt="pics of transactions"/>
+
+
+<img src="edit.png" alt="pics of transactions"/>
+
+<img src="charts.png" alt="pics of transactions"/>
 
 
 # Getting Started with Create React App
